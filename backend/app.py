@@ -26,6 +26,7 @@ def home():
 
 @app.post("/api/send-sms")
 def send_sms(data: SMSRequest):
+    print("FROM VALUE:", os.getenv("TWILIO_FROM_NUMBER"))
     try:
         client = Client(
             os.getenv("TWILIO_SID"),
