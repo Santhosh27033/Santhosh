@@ -2,8 +2,18 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from twilio.rest import Client
 import os
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# CORS setup
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class SMSRequest(BaseModel):
     to: str
@@ -35,15 +45,3 @@ def send_sms(data: SMSRequest):
 @app.post("/api/register-phone")
 def register(phone: dict):
     return {"success": True}
-
-from fastapi.middleware.cors import CORSMiddleware
-
-app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
