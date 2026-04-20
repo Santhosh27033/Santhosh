@@ -35,7 +35,7 @@ def send_sms(data: SMSRequest):
 
         msg = client.messages.create(
             body=data.message,
-            from_=os.getenv("TWILIO_PHONE"),
+            from_="+16203495308",
             to=data.to
         )
 
