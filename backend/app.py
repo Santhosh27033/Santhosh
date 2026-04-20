@@ -35,3 +35,15 @@ def send_sms(data: SMSRequest):
 @app.post("/api/register-phone")
 def register(phone: dict):
     return {"success": True}
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
